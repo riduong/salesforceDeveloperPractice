@@ -26,4 +26,5 @@ public with sharing class ChallengesSOQL {
     public static List<AggregateResult> MostPopularAccount() {
         return [SELECT Account.Name, Count(Id) FROM Contact GROUP BY Account.Name Order By Count(Id) DESC Limit 1];
     }
+
 }

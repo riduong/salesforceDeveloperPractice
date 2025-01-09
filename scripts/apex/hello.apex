@@ -23,3 +23,7 @@ System.debug('Annual Revenue: ' + ChallengesSOQL.BigFive());
 System.debug('Last Big Opportunity: ' + ChallengesSOQL.LastBigOpportunity());
 System.debug('Major Players: ' + ChallengesSOQL.MajorPlayers());
 System.debug('Most Popular Account: ' + ChallengesSOQL.MostPopularAccount());
+
+System.debug('Contact & Lead named Tom' + ChallengesSOSL.namedTom());
+System.debug('A & O' + ChallengesSOSL.accountsWithAandO());
+System.debug('Phone ending in 1000' + ChallengesSOSL.phoneEndingIn1000());
