@@ -27,3 +27,5 @@ System.debug('Most Popular Account: ' + ChallengesSOQL.MostPopularAccount());
 System.debug('Contact & Lead named Tom' + ChallengesSOSL.namedTom());
 System.debug('A & O' + ChallengesSOSL.accountsWithAandO());
 System.debug('Phone ending in 1000' + ChallengesSOSL.phoneEndingIn1000());
+
+System.debug('MATH  ' + Calculator.Calculator('(10.5 * 2 - 10) * 0.5'));
