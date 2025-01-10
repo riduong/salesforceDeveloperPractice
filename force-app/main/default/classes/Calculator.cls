@@ -11,7 +11,6 @@ public with sharing class Calculator {
 
     // Recursively evaluate parentheses first
     public static Decimal evaluateStringFunction(String input) {
-        System.debug('evaluateStringFunction: ' + input);
         while(input.contains('(')) {
             Integer startIndex = input.lastIndexOf('('); //Gets last '('
             Integer endIndex = input.indexOf(')', startIndex); //Gets first occurence of ')' from starting point
@@ -32,26 +31,17 @@ public with sharing class Calculator {
         input = input.replace('(','');
         input = input.replace(')','');
         input = input.replace(' ','');
-        System.debug('multipy&Divide: ' + input);
-
-        System.debug('CreateStringList:  ' + createStringList(input));
 
         List<String> parsedStringList = createStringList(input);
         // List to add/process results of multiplication & division then send to add & subtract
         List<String> resultList = new List<String>();
 
         for(Integer i = 0; i < parsedStringList.size(); i++) {
-            System.debug('list size in Multi: ' + parsedStringList.size());
             String currentVal = parsedStringList.get(i);
-            System.debug('current Val in Multi: ' + currentVal);
-            System.debug('In : ' + i);
             if(currentVal == '*') {
-                System.debug('decValue: ' + Decimal.valueOf(parsedStringList.get(i+1)));
                 //Taking the previous element and doing multiplication with the next element. Then adding it into result list
-                //resultList.add(''+Multiply(Decimal.valueOf(resultList.remove(resultList.size()-1)), Decimal.valueOf(input.substring(i+1,i+2))));
                 resultList.add(''+ Multiply(Decimal.valueOf(resultList.remove(resultList.size()-1)), Decimal.valueOf(parsedStringList.get(i+1))));
                 i++; // Incrementing i because we have already taken the next element
-                System.debug('resultList Multi:  ' + resultList.get(0));
             }
             else if(currentVal == '/') {
                 //Taking the previous element and doing divison with the next element. Then adding it into result list
@@ -63,7 +53,6 @@ public with sharing class Calculator {
             }
             //Adding last element in the list
             if(i == input.length() - 1) {
-                System.debug('input length:current length: ' + input.length() + 'curr length' + i);
                 resultList.add(currentVal);
             }
         }
@@ -71,34 +60,24 @@ public with sharing class Calculator {
     }
 
     public static Decimal processAddAndSubtract(List<String> input) {
-        System.debug('add&Sub: ' + input);
         List<Decimal> resultList = new List<Decimal>();
         String currNum = '';
         for(Integer i = 0; i < input.size(); i++) {
             String currentVal = input.get(i);
-            System.debug('Add Curr Val: ' + currentVal);
-            System.debug('input size: ' + input.size());
-            System.debug('current input i:  ' + i);
             if(currentVal.isNumeric() || currentVal == '.' || isDecimalNumeric(currentVal)) {
-                System.debug('IN IS NUMERIC:  '+currentVal);
                 currNum += currentVal;
             }
             else {
                 if(currNum != '') {
-                    System.debug('IN ELSE STATEMENT currNum: ' + currNum);
                     resultList.add(Decimal.valueOf(currNum));
                     currNum = '';
                 }
             }
             if(currentVal == '+') {
-                System.debug('IN ADDITION');
                 resultList.add(Add(resultList.remove(0),Decimal.valueOf(input.get(i+1))));
                 i++;
             }
             else if(currentVal == '-') {
-                System.debug('IN SUBTRACTION: ' + input.get(i));
-                System.debug('Sub current input i:  ' + i);
-
                 resultList.add(Add(resultList.remove(0),(-1*Decimal.valueOf(input.get(i+1)))));
                 i++;
             }
@@ -106,7 +85,6 @@ public with sharing class Calculator {
         if(resultList.isEmpty()) {
             resultList.add(Decimal.valueOf(currNum));
         }
-        System.debug('RETURNING   IN ADD   : ' + resultList.get(0));
         return resultList.remove(0);
     }
     
@@ -115,12 +93,14 @@ public with sharing class Calculator {
     }
 
     public static Decimal Multiply(Decimal num1, Decimal num2) {
+        
+        /* Challenge 2 Answer using Add method -> Changing code for the elite challenge
         Decimal multiplySum = 0;
         for(Integer i = 0 ; i < num2; i++) {
             multiplySum = Add(multiplySum,num1);
-            System.debug('multiSum: '+multiplySum);
         }
-        return multiplySum;
+        return multiplySum;*/
+        return num1 * num2;
     }
 
     public static Decimal Divide(Decimal num1, Decimal num2) {
