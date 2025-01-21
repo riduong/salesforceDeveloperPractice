@@ -1,0 +1,60 @@
+<!-- <apex:page standardController="Account" recordSetVar="accounts" extensions="VisualforceExtensions">
+
+  <h1>The current account is : {!Account.name}</h1>
+ 
+  <apex:pageBlock title="Viewing Accounts">
+        <apex:form id="theForm">
+            <apex:pageBlockSection >
+                <apex:dataList var="a" value="{!accounts}" type="1">
+                    {!a.name}
+                </apex:dataList>
+            </apex:pageBlockSection>
+            <apex:panelGrid columns="2">
+                <apex:commandLink action="{!previous}">Previous</apex:commandlink>
+                <apex:commandLink action="{!next}">Next</apex:commandlink>
+            </apex:panelGrid>
+        </apex:form>
+    </apex:pageBlock>
+
+</apex:page> -->
+
+<!-- <apex:page controller="AccountController" standardStylesheets="false" showHeader="false">
+    <apex:styleshheet value="{!$Resource.styles}"/>
+    <h1>The fixed account is: {!fixedAccount.Name}</h1>
+</apex:page> -->
+ 
+
+<!-- <apex:page controller="GreetingController">
+    <h1>Challenge 6: Account Greeting</h1>
+
+    <apex:form>
+        <apex:commandButton value="Show Greeting" action="{!showGreetingMessage}" rerender="greetingBlock" />
+    </apex:form>
+
+    <apex:outputPanel id="greetingBlock" rendered="{!showGreeting}">
+        <h2>Hello, {!accountName}!</h2>
+    </apex:outputPanel>
+</apex:page> -->
+
+<apex:page controller="AccountSearchController">
+    <h1>Search for an Account</h1>
+
+    <apex:form>
+        <apex:inputText value="{!searchTerm}" label="Enter Account ID or Name:" />
+
+        <apex:commandButton value="Search" action="{!searchAccount}" rerender="accountDetails" />
+    </apex:form>
+
+    <apex:outputPanel id="accountDetails" rendered="{!NOT(ISBLANK(accountRecord))}">
+        <p><strong>Account Name:</strong> {!accountRecord.Name}</p>
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!ISBLANK(accountRecord)}">
+        <p>No Account found with the specified ID or Name.</p>
+    </apex:outputPanel>
+</apex:page>
+
+
+
+
+

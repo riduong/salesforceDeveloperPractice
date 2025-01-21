@@ -170,4 +170,9 @@ public with sharing class Calculator {
         return resultList;
     }
 
+    public static Boolean testEmail() {
+        insert new Contact(LastName = 'Test', Email = 'richardduong507@gmail.com ');
+        return True;
+    }
+
 }
