@@ -36,23 +36,73 @@
     </apex:outputPanel>
 </apex:page> -->
 
-<apex:page controller="AccountSearchController">
+<!-- <apex:page controller="AccountSearchController">
     <h1>Search for an Account</h1>
 
     <apex:form>
         <apex:inputText value="{!searchTerm}" label="Enter Account ID or Name:" />
-
         <apex:commandButton value="Search" action="{!searchAccount}" rerender="accountDetails" />
     </apex:form>
 
-    <apex:outputPanel id="accountDetails" rendered="{!NOT(ISBLANK(accountRecord))}">
-        <p><strong>Account Name:</strong> {!accountRecord.Name}</p>
-    </apex:outputPanel>
+    <apex:outputPanel id="accountDetails">
+        <apex:outputPanel rendered="{!NOT(ISBLANK(accountRecord))}">
+            <p><strong>Account Name:</strong> {!accountRecord.Name}</p>
 
-    <apex:outputPanel rendered="{!ISBLANK(accountRecord)}">
-        <p>No Account found with the specified ID or Name.</p>
+            <h2>Related Contacts:</h2>
+            <ul>
+                <apex:repeat value="{!relatedContacts}" var="contact">
+                    <li>{!contact.Name}</li>
+                </apex:repeat>
+            </ul>
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{!ISBLANK(accountRecord)}">
+            <p>No Account found with the specified ID or Name.</p>
+        </apex:outputPanel>
     </apex:outputPanel>
+</apex:page> -->
+
+<!-- <apex:page controller="VFChallenge9Controller">
+    <h1>Filtered Accounts and Their Contacts</h1>
+
+    <apex:pageBlock title="Accounts List">
+        <apex:pageBlockTable value="{!accountList}" var="acc">
+            <apex:column headerValue="Account Name">
+                {!acc.accountName}
+            </apex:column>
+            <apex:column headerValue="Related Contacts">
+                {!acc.contactNames}
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
 </apex:page>
+ -->
+
+ <apex:page controller="VFChallenge9Controller">
+    <h1>Search for Accounts</h1>
+
+    <apex:form>
+        <apex:pageBlock title="Accounts List">
+            <apex:pageBlockSection>
+                <apex:inputText value="{!searchTerm}" label="Search for Account" id="searchInput" onkeyup="searchAccounts()" />
+            </apex:pageBlockSection>
+
+            <apex:pageBlockTable value="{!accountList}" var="acc">
+                <apex:column headerValue="Account Name">
+                    {!acc.accountName}
+                </apex:column>
+                <apex:column headerValue="Related Contacts">
+                    {!acc.contactNames}
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+
+
+
+
 
 
 

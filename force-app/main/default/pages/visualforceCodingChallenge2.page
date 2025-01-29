@@ -1,0 +1,12 @@
+<apex:page controller="VFChallenge10Controller">
+    <h1>Filter Accounts</h1>
+
+    <apex:form>
+        <apex:pageBlock title="Enter Filter Criteria">
+            <apex:pageBlockSection>
+                <apex:inputText value="{!filterKeyword}" label="Account Name Contains:" />
+                <apex:commandButton value="Search" action="{!redirectToFilteredPage}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
