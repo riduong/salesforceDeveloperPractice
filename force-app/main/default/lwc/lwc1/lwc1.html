@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title = "Add to List">
+        <ul>
+            <template for:each={toDoItems} for:item="toDoItem">
+                <li key={toDoItem}>{toDoItem}</li>
+            </template>
+        </ul>
+
+        <lightning-input label="Enter Text" value={inputValue} onchange={handleInputChange}></lightning-input>
+        <lightning-button label="Add" onclick={handleAdd}></lightning-button>
+    </lightning-card>
+
+
+</template>

@@ -1,0 +1,12 @@
+<template>
+    <!-- Using lightning-card title as the header -->
+    <lightning-card title={headerText}>
+<!--         <h2>{headerText}</h2> -->
+
+        <lightning-button label="Change Header" onclick={toggleInput}></lightning-button>
+
+        <template if:true={isInputVisible}>
+            <lightning-input label="Header Value" value={headerText} onchange={handleInputChange}></lightning-input>
+        </template>
+    </lightning-card>
+</template>
