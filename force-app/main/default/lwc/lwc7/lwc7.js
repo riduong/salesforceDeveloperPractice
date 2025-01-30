@@ -1,15 +1,25 @@
-import { LightningElement, wire, api } from 'lwc';
-import getContact from '@salesforce/apex/LWCHelper.getContact';
+import { LightningElement } from 'lwc';
+import searchContact from '@salesforce/apex/LWCHelper.searchContact';
 
-export default class Lwc8 extends LightningElement {
-    @api 
-    recordId;
-    contact;
+export default class ApexImperativeMethod extends LightningElement {
+    selectedContact;
+    searchTerm = '';
 
-    @wire(getContact, { contactId: '$recordId' })
-    wiredContact({ data }) {
-        if (data) {
-            this.contact = data;
+    handleSearch(event) {
+        this.searchTerm = event.target.value;
+        
+        if (this.searchTerm) {
+            this.searchContactInApex(this.searchTerm);
+        } else {
+            this.selectedContact = null;
+        }
+    }
+
+    async searchContactInApex(searchTerm) {
+        const result = await searchContact({ searchTerm });
+
+        if (result) {
+            this.selectedContact = result;
         }
     }
 }

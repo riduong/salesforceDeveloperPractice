@@ -9,4 +9,8 @@ public with sharing class LWCHelper {
         return [SELECT Id, Name, Band_Image__c, Description__c FROM Band__c];
     }
     
+    @AuraEnabled(cacheable=true)
+    public static Contact searchContact(String searchTerm) {
+        return [SELECT Id, Name, Email FROM Contact WHERE Name LIKE :('%' + searchTerm + '%') LIMIT 1];
+    }
 }
