@@ -3,7 +3,7 @@ import searchContact from '@salesforce/apex/LWCHelper.searchContact';
 
 export default class ApexImperativeMethod extends LightningElement {
     selectedContact;
-    searchTerm = '';
+    searchTerm;
 
     handleSearch(event) {
         this.searchTerm = event.target.value;
