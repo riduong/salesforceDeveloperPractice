@@ -1,0 +1,9 @@
+<template>
+    <template if:true={record}>
+        <div class="band-container">
+            <h3>{record.Name}</h3>
+            <img src={record.Band_Image__c} alt={record.Name} />
+            <lightning-button label="Learn More" onclick={handleLearnMore}></lightning-button>
+        </div>
+    </template>
+</template>

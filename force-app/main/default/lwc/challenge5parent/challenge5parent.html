@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Favorite Bands">
+        <lightning-combobox
+            label="Select a Band"
+            value={selectedBandId}
+            options={bandOptions}
+            onchange={handleBandSelection}
+        ></lightning-combobox>
+
+        <template if:true={selectedBand}>
+            <lightning-card>
+                <p><strong>{selectedBand.Name}</strong></p>
+                <img src={selectedBand.Band_Image__c} alt={selectedBand.Name} />
+
+                <lightning-button label="Learn More" onclick={handleLearnMore}></lightning-button>
+
+                <template if:true={isSidebarVisible}>
+                    <p>{selectedDescription}</p>
+                </template>
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>
