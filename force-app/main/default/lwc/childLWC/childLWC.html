@@ -1,0 +1,10 @@
+<template>
+        <lightning-record-edit-form object-api-name={objectApiName} record-id={record.Id}>
+            <lightning-input-field value={record.Name} field-name={accName}></lightning-input-field>
+            <lightning-input-field value={record.AnnualRevenue} field-name={accAnnualRevenue}></lightning-input-field>
+            <lightning-button label="Save Record" type="submit"></lightning-button>
+        </lightning-record-edit-form>
+    
+        <button class="delete-button" onclick={deleteAccount} data-recordid={record.Id}>Delete</button>
+    
+</template>
