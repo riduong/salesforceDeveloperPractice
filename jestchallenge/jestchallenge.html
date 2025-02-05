@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="User Input Display">
+            <lightning-input
+                label="Enter Text"
+                value={userInput}
+                onchange={handleInputChange}>
+            </lightning-input>
+
+            <lightning-button 
+                label="Show Input"
+                variant="brand"
+                onclick={handleButtonClick}>
+            </lightning-button>
+
+            <template if:true={displayText}>
+                <p>{displayText}</p>
+            </template>
+    </lightning-card>
+</template>
