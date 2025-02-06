@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Open Cases Dashboard" icon-name="standard:case">
+        <template if:true={cases}>
+            <lightning-datatable 
+                key-field="Id" 
+                data={cases} 
+                columns={columns} 
+                draft-values={draftValues} 
+                onsave={handleSave} 
+                hide-checkbox-column="true">
+            </lightning-datatable>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+
+        <br/>
+
+        <lightning-card title="Create New Case">
+            <lightning-input label="Subject" value={newCaseSubject} onchange={handleSubjectChange}></lightning-input>
+            <lightning-combobox label="Priority" value={newCasePriority} options={priorityOptions} onchange={handlePriorityChange}></lightning-combobox>
+            <lightning-textarea label="Description" value={newCaseDescription} onchange={handleDescriptionChange}></lightning-textarea>
+            <lightning-button variant="brand" label="Create Case" onclick={handleCreateCase} class="slds-m-top_small"></lightning-button>
+        </lightning-card>
+    </lightning-card>
+</template>
