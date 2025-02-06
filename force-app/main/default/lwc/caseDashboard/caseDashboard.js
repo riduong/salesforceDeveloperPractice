@@ -13,7 +13,6 @@ export default class CaseDashboard extends LightningElement {
     @track 
     draftValues = [];
 
-    // Fields for new case creation
     newCaseSubject = '';
     newCasePriority = 'Medium';
     newCaseDescription = '';
@@ -46,19 +45,19 @@ export default class CaseDashboard extends LightningElement {
     }
 
     handleSave(event) {
-        const updatedFields = event.detail.draftValues; // List of updated rows
+        const updatedFields = event.detail.draftValues;
 
-        updateCases({ casesToUpdate: updatedFields }) // Call Apex method
+        updateCases({ casesToUpdate: updatedFields })
             .then(() => {
                 this.showToast('Success', 'Cases updated successfully', 'success');
-                return refreshApex(this.wiredCasesResult); // Refresh UI with new data
+                return refreshApex(this.wiredCasesResult);
             })
             .catch(error => {
                 this.showToast('Error', 'Error updating cases', 'error');
                 console.error(error);
             })
             .finally(() => {
-                this.draftValues = []; // Clear draft values
+                this.draftValues = [];
             });
     }
 
